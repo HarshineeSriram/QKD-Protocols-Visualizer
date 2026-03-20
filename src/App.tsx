@@ -24,22 +24,22 @@ const menuData: MenuStructure = {
       "Heisenberg's Uncertainty": {
         "4 Polarization States": {
           name: "BB84",
-          desc: "The foundational protocol utilizing four polarization states across two bases to encode information securely.",
+          desc: "The first quantum cryptography protocol, uses four polarization states of photon",
           icon: "🍲",
         },
         "2 Non-Orthogonal States": {
           name: "B92",
-          desc: "A minimalist variation of BB84 that achieves security using only two non-orthogonal quantum states.",
+          desc: "Identical to the BB84, however, it uses only two non-orthogonal states",
           icon: "🥗",
         },
         "6 Polarization States": {
           name: "SSP",
-          desc: "Increases security at the cost of key rate by adding a third, circular polarization basis to the BB84 framework.",
+          desc: "This protocol uses higher number of polarization states of photon (i.e., six) as compared to the BB84 protocol",
           icon: "🥘",
         },
         "Anti-PNS Classical Announcement": {
           name: "SARG04",
-          desc: "A robust modification of BB84 designed specifically to thwart Photon Number Splitting (PNS) attacks using weak light pulses.",
+          desc: "Only the classical phase of SARG04 is different than the BB84 protocol",
           icon: "🛡️",
         },
       },
@@ -48,12 +48,12 @@ const menuData: MenuStructure = {
       "Quantum Entanglement": {
         "Bell's Inequality Test": {
           name: "E91",
-          desc: "Utilizes entangled photon pairs and checks for eavesdroppers by testing the violation of Bell's inequalities.",
+          desc: "The first QKD protocol based on the principle of quantum entanglement",
           icon: "🍝",
         },
         "BB84-Style Sifting": {
           name: "BBM92",
-          desc: "An entanglement-based protocol that abandons Bell tests in favor of the standard sifting and error-rate checking of BB84.",
+          desc: "The BBM92 protocol is the entangled version of BB84 protocol",
           icon: "🍜",
         },
       },
@@ -64,12 +64,12 @@ const menuData: MenuStructure = {
       "Heisenberg's Uncertainty": {
         "Discrete Squeezed States": {
           name: "Discrete Modulation",
-          desc: "Uses standard telecom PIN photo-diodes and coherent homodyne detection with discretely modulated squeezed states.",
+          desc: "A new version of BB84 protocol with the squeezed-state and discrete modulation",
           icon: "🍮",
         },
         "Gaussian Squeezed States": {
           name: "Gaussian Protocol",
-          desc: "Replaces photon counting with highly efficient homodyne detection using a continuous Gaussian modulation of states.",
+          desc: "The squeezed-state based BB84 protocol with the Gaussian modulation",
           icon: "🍨",
         },
       },
@@ -80,12 +80,12 @@ const menuData: MenuStructure = {
       "Heisenberg's Uncertainty": {
         "Phase Modulation": {
           name: "DPS",
-          desc: "Transmits a sequence of coherent weak laser pulses where the intensity remains constant but the phases modulate.",
+          desc: "The first DPR based QKD protocol that uses weak coherent sources, and one bit delay circuit to generate, and measure qubits, respectively",
           icon: "🍹",
         },
         "Intensity Modulation": {
           name: "COW",
-          desc: "Transmits a sequence of coherent weak laser pulses where the phases remain constant but the intensities vary.",
+          desc: "The COW protocol uses weak coherent pulses for photon generation and each bit is encoded in a sequence of one non-empty ($\\mu$)-pulses (containing the mean number of photons) and one empty (0)-pulses",
           icon: "🍷",
         },
       },
