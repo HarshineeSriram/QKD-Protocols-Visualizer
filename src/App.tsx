@@ -1,7 +1,24 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { ChefHat, RefreshCw, AlertCircle, Utensils } from "lucide-react";
 
-const menuData = {
+// 1. Define the shapes of your data so TypeScript understands the "Recipe"
+interface GarnishDetails {
+  name: string;
+  desc: string;
+  icon: string;
+}
+
+interface MenuStructure {
+  [family: string]: {
+    [scheme: string]: {
+      [principle: string]: {
+        [garnish: string]: GarnishDetails;
+      };
+    };
+  };
+}
+
+const menuData: MenuStructure = {
   "DV-QKD": {
     "Prepare & Measure": {
       "Heisenberg's Uncertainty": {
@@ -84,7 +101,11 @@ export default function QuantumKitchen() {
   const [family, setFamily] = useState("DV-QKD");
   const [scheme, setScheme] = useState("Prepare & Measure");
   const [principle, setPrinciple] = useState("Heisenberg's Uncertainty");
-  const [garnish, setGarnish] = useState("4 Polarization States");
+
+  // 2. Tell TypeScript garnish can be a string OR null
+  const [garnish, setGarnish] = useState<string | null>(
+    "4 Polarization States"
+  );
 
   const handleReset = () => {
     setFamily("DV-QKD");
@@ -101,8 +122,13 @@ export default function QuantumKitchen() {
     : [];
 
   const isValidRecipe = availableGarnishes.length > 0;
+
+  // 3. Add checks to ensure garnish exists in the object before accessing it
   const finalDish =
-    isValidRecipe && garnish && availableGarnishesObj[garnish]
+    isValidRecipe &&
+    garnish &&
+    availableGarnishesObj &&
+    availableGarnishesObj[garnish]
       ? availableGarnishesObj[garnish]
       : null;
 
