@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { ChefHat, RefreshCw, AlertCircle, Utensils } from "lucide-react";
 
-// 1. Define the shapes of your data so TypeScript understands the "Recipe"
-interface GarnishDetails {
+// 1. Define the shapes of your data
+interface SpiceDetails {
   name: string;
   desc: string;
   icon: string;
@@ -12,7 +12,7 @@ interface MenuStructure {
   [family: string]: {
     [scheme: string]: {
       [principle: string]: {
-        [garnish: string]: GarnishDetails;
+        [spice: string]: SpiceDetails;
       };
     };
   };
@@ -102,34 +102,28 @@ export default function QuantumKitchen() {
   const [scheme, setScheme] = useState("Prepare & Measure");
   const [principle, setPrinciple] = useState("Heisenberg's Uncertainty");
 
-  // 2. Tell TypeScript garnish can be a string OR null
-  const [garnish, setGarnish] = useState<string | null>(
-    "4 Polarization States"
-  );
+  // Changed state name to spice
+  const [spice, setSpice] = useState<string | null>("4 Polarization States");
 
   const handleReset = () => {
     setFamily("DV-QKD");
     setScheme("Prepare & Measure");
     setPrinciple("Heisenberg's Uncertainty");
-    setGarnish("4 Polarization States");
+    setSpice("4 Polarization States");
   };
 
   const currentLevel1 = menuData[family];
   const currentLevel2 = currentLevel1 ? currentLevel1[scheme] : null;
-  const availableGarnishesObj = currentLevel2 ? currentLevel2[principle] : null;
-  const availableGarnishes = availableGarnishesObj
-    ? Object.keys(availableGarnishesObj)
+  const availableSpicesObj = currentLevel2 ? currentLevel2[principle] : null;
+  const availableSpices = availableSpicesObj
+    ? Object.keys(availableSpicesObj)
     : [];
 
-  const isValidRecipe = availableGarnishes.length > 0;
+  const isValidRecipe = availableSpices.length > 0;
 
-  // 3. Add checks to ensure garnish exists in the object before accessing it
   const finalDish =
-    isValidRecipe &&
-    garnish &&
-    availableGarnishesObj &&
-    availableGarnishesObj[garnish]
-      ? availableGarnishesObj[garnish]
+    isValidRecipe && spice && availableSpicesObj && availableSpicesObj[spice]
+      ? availableSpicesObj[spice]
       : null;
 
   return (
@@ -164,7 +158,7 @@ export default function QuantumKitchen() {
                     key={f}
                     onClick={() => {
                       setFamily(f);
-                      setGarnish(null);
+                      setSpice(null);
                     }}
                     className={`px-4 py-2 rounded-md border transition-all duration-300 ${
                       family === f
@@ -189,7 +183,7 @@ export default function QuantumKitchen() {
                     key={s}
                     onClick={() => {
                       setScheme(s);
-                      setGarnish(null);
+                      setSpice(null);
                     }}
                     className={`px-4 py-2 rounded-md border transition-all duration-300 ${
                       scheme === s
@@ -214,7 +208,7 @@ export default function QuantumKitchen() {
                     key={p}
                     onClick={() => {
                       setPrinciple(p);
-                      setGarnish(null);
+                      setSpice(null);
                     }}
                     className={`px-4 py-2 rounded-md border transition-all duration-300 ${
                       principle === p
@@ -228,24 +222,24 @@ export default function QuantumKitchen() {
               </div>
             </div>
 
-            {/* Garnish Selection (Conditional) */}
+            {/* Signature Spice Selection (Conditional) */}
             {isValidRecipe && (
               <div className="animate-in fade-in slide-in-from-left-4 duration-500">
                 <h3 className="text-sm uppercase tracking-wider text-amber-400 mb-3">
-                  4. The Garnish (Unique Feature)
+                  4. The Signature Spice (Unique Feature)
                 </h3>
                 <div className="flex flex-wrap gap-3">
-                  {availableGarnishes.map((g) => (
+                  {availableSpices.map((s) => (
                     <button
-                      key={g}
-                      onClick={() => setGarnish(g)}
+                      key={s}
+                      onClick={() => setSpice(s)}
                       className={`px-4 py-2 rounded-md border transition-all duration-300 ${
-                        garnish === g
+                        spice === s
                           ? "bg-emerald-500/20 border-emerald-500 text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.2)]"
                           : "bg-slate-800 border-slate-700 hover:border-emerald-500/50 text-slate-300"
                       }`}
                     >
-                      {g}
+                      {s}
                     </button>
                   ))}
                 </div>
@@ -273,7 +267,7 @@ export default function QuantumKitchen() {
               <div className="text-center animate-in fade-in duration-500 flex flex-col items-center">
                 <Utensils className="w-16 h-16 text-slate-600 mb-4" />
                 <h3 className="text-2xl font-bold text-slate-300 mb-2">
-                  Awaiting the Garnish...
+                  Awaiting the Signature Spice...
                 </h3>
                 <p className="text-slate-400">
                   Select a unique feature from the left to plate your final QKD
